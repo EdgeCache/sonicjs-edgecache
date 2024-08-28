@@ -11,11 +11,18 @@ export const tableName = 'users';
 
 export const route = 'users';
 
+// id, full name, email, phone, job title, department, sex, region
 export const definition = {
   id: text('id').primaryKey(),
   firstName: text('firstName'),
   lastName: text('lastName'),
+  fullName: text('fullName'),
   email: text('email'),
+  phone: text('phone'),
+  jobTitle: text('jobTitle'),
+  department: text('department'),
+  gender: text('gender'),
+  region: text('region'),
   password: text('password'),
   role: text('role').$type<'admin' | 'user'>()
 };
@@ -34,32 +41,9 @@ export const relation = relations(table, ({ many }) => ({
 
 export const access: ApiConfig['access'] = {
   operation: {
-    create: isAdmin,
-    delete: isAdmin
-  },
-  item: {
-    // if a user tries to update a user and isn't the user that created the user the update will return unauthorized response
-    update: isAdminOrUser
-  },
-  fields: {
-    id: {
-      read: (ctx, value, doc) => {
-        return isAdminOrEditor(ctx) || isAdminOrUser(ctx, doc.id);
-      }
-    },
-    email: {
-      read: (ctx, value, doc) => {
-        return isAdminOrUser(ctx, doc.id);
-      }
-    },
-    password: {
-      update: isAdminOrUser
-    },
-    role: {
-      read: (ctx, value, doc) => {
-        return isAdminOrUser(ctx, doc.id);
-      },
-      update: isAdmin
-    }
+    read: true,
+    create: true,
+    update: isAdminOrUser,
+    delete: isAdminOrUser
   }
 };
