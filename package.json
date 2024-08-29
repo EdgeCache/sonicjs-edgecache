@@ -11,8 +11,8 @@
     "deploy": "wrangler pages deploy dist",
     "test": "jest --verbose",
     "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema --out=./migrations",
-    "up": "wrangler d1 migrations apply sonicjs --local",
-    "up:prod": "wrangler d1 migrations apply sonicjs",
+    "up": "wrangler d1 migrations apply sonicjs-edgecache --local",
+    "up:prod": "wrangler d1 migrations apply sonicjs-edgecache",
     "tail": "wrangler pages deployment tail",
     "check": "run-p check:*",
     "check:tsc": "tsc --noEmit",
@@ -25,6 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
+    "@faker-js/faker": "^8.4.1",
     "@types/jest": "^29.5.12",
     "drizzle-kit": "^0.24.2",
     "esbuild": "^0.17.18",
