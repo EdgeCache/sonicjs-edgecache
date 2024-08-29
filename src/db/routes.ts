@@ -1,6 +1,8 @@
 import * as users from './schema/users';
 import * as posts from './schema/posts';
 import * as comments from './schema/comments';
+import * as employees from './schema/employees';
+
 import * as categories from './schema/categories';
 import * as categoriesToPosts from './schema/categoriesToPosts';
 import * as userKeys from './schema/userKeys';
@@ -198,7 +200,8 @@ export const tableSchemas = {
   categories,
   categoriesToPosts,
   userKeys,
-  userSessions
+  userSessions,
+  employees
 };
 
 for (const key of Object.keys(tableSchemas)) {
