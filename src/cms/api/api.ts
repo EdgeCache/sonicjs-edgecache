@@ -44,6 +44,9 @@ tables.forEach((entry) => {
     const query = ctx.req.query();
     const params = qs.parse(query);
 
+    console.log('query', query)
+    console.log('params', params)
+
     if (entry.hooks?.beforeOperation) {
       await entry.hooks.beforeOperation(ctx, 'read', params.id);
     }
