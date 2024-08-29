@@ -19,7 +19,7 @@ const count = 1000;
 for (let index = 0; index < count; index++) {
   const id = makeid(14);
   const gender = genders[randomIntFromInterval(0, 1)];
-  const firstName = faker.person.firstName(gender);
+  const firstName = faker.person.firstName(gender.toLowerCase());
   const lasttName = faker.person.lastName();
   const fullName = `${firstName} ${lasttName}`;
   const department =
@@ -31,6 +31,7 @@ for (let index = 0; index < count; index++) {
   )}-${randomIntFromInterval(1000, 9999)}`;
   const region = regions[randomIntFromInterval(0, regions.length - 1)];
   const email = `${firstName.toLowerCase()}.${lasttName.toLowerCase()}@nowhere.com`;
+  // console.log(firstName, gender)
   const sql = `insert into employees(id, firstName, lastName, fullName, email, phone, jobTitle, department, gender, region) values ("${id}","${firstName}","${lasttName}","${fullName}","${email}","${phone}","${jobTitle}","${department}","${gender}","${region}");`;
   console.log(sql);
 }
