@@ -174,7 +174,10 @@ export function whereClauseBuilder(filters: any) {
     let filter = filters[key];
     let condition = Object.keys(filter)[0];
 
+    console.log('filter, condition', filter, condition)
+
     if (Array.isArray(filter[condition])) {
+      console.log('isArray')
       // AND (country = 'usa' OR contry = 'uk')
       const arr = filter[condition];
       let multiArr = [];
@@ -183,6 +186,8 @@ export function whereClauseBuilder(filters: any) {
       }
       whereClause = `${whereClause} ${AND} (${multiArr.join(` OR `)})`;
     } else {
+      console.log('string')
+
       whereClause = `${whereClause} ${AND} ${key} ${processCondition(
         condition
       )} '${filter[condition]}'`;
