@@ -48,7 +48,7 @@ app.use(
   '/v1/*',
   cors({
     origin: (origin) => {
-      return origin.indexOf('localhost') > 0 || origin.endsWith('.sonicjs.com')
+      return origin.indexOf('localhost') > 0 || origin.endsWith('.edgecache.co')
         ? origin
         : 'https://sonicjs.com';
     }
