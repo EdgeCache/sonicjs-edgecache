@@ -176,7 +176,11 @@ export function whereClauseBuilder(filters: any) {
 
     console.log('filter, condition', filter, condition);
 
-    if (Array.isArray(filter[condition])) {
+    const part = filter[condition];
+    console.log('part', part, typeof part)
+    var result = Object.keys(part).map((key) => [part[key]]);
+    
+    if (Array.isArray(part)) {
       console.log('isArray');
       // AND (country = 'usa' OR contry = 'uk')
       const arr = filter[condition];
