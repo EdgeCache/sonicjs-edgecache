@@ -42,6 +42,8 @@ tables.forEach((entry) => {
   api.get(`/${entry.route}`, async (ctx) => {
     const start = Date.now();
     const query = ctx.req.query();
+    console.log('ctx.req', ctx.req)
+
     console.log('query', query)
     const params = qs.parse(query, { duplicates: 'combine' });
 
