@@ -42,13 +42,14 @@ tables.forEach((entry) => {
   api.get(`/${entry.route}`, async (ctx) => {
     const start = Date.now();
     const query = ctx.req.query();
-    console.log('ctx.req', JSON.stringify(ctx.req, null, 2))
+    console.log('ctx.req', JSON.stringify(ctx.req, null, 2));
 
-    console.log('query', query)
-    const params = qs.parse(query, { duplicates: 'combine' });
+    console.log('query', query);
+    // const params = qs.parse(query, { duplicates: 'combine' });
+    const params = ctx.req.url.indexOf('?') > 0 ? ctx.req.url.split('?')[1] : ctx.req.url;
 
-    console.log('query', query)
-    console.log('params', params)
+    console.log('query', query);
+    console.log('params', params);
 
     if (entry.hooks?.beforeOperation) {
       await entry.hooks.beforeOperation(ctx, 'read', params.id);
@@ -379,6 +380,10 @@ tables.forEach((entry) => {
 });
 
 api.get('/ping', (ctx) => {
+  const query = ctx.req.query();
+  const url =
+    ctx.req.url.indexOf('?') > 0 ? ctx.req.url.split('?')[1] : ctx.req.url;
+
   return ctx.json(`${ctx.req.path} is all good`);
 });
 

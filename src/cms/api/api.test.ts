@@ -16,7 +16,7 @@ const ctx = getTestingContext();
 describe('Test the APIs', () => {
   it('ping should return 200', async () => {
     const res = await app.fetch(
-      new Request('http://localhost/v1/ping'),
+      new Request('http://localhost/v1/ping?x=1&y=2&filters[country][$eq]=usa&filters[country][$eq]=uk'),
       ctx.env
     );
     expect(res.status).toBe(200);
